@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>イオングループ検索</title>
+</head><body>
+
+<script type="module" src="https://code4fukui.github.io/search-box/search-box.js"></script>
+
+<h1>イオングループ検索</h1>
+<div class=help><a href=https://www.aeon.info/>イオン株式会社</a>の<a href=https://www.aeon.info/company/group/>グループ事業・企業</a>を検索できます。</diV>
+<search-box id="search"></search-box>
+<div id="list"></div>
+
+<script type="module">
+import { CSV } from "https://js.sabae.cc/CSV.js";
+
+onload = async () => {
+  const data = CSV.toJSON(await CSV.fetch("https://code4fukui.github.io/aeon/aeon-company.csv"));
+  console.log(data);
+
+  const show = () => {
+    list.innerHTML = "";
+
+    const key = search.value;
+    const data2 = data.filter(d => d.title.indexOf(key) >= 0 || d.url.indexOf(key) >= 0);
+
+    let idx = 1;
+    for (const d of data2) {
+      const div = document.createElement("div");
+      div.innerHTML = `${idx++}. <a href=${d.url}>${d.title}</a>${d.public ? "(株式公開企業)" : ""}`;
+      list.appendChild(div);
+    }
+  };
+  show();
+  search.onchange = () => show();
+};
+</script>
+
+<style>
+@import url(https://unpkg.com/sakura.css/css/sakura.css);
+@ximport url(https://code4fukui.github.io/search-box/style.css);
+
+.help {
+  margin: 1em 0;
+}
+search-box {
+  margin: 1em 0;
+}
+#list {
+  border: .5em solid #ddd;
+  margin: .5em 0;
+  padding: .5em;
+}
+</style>
+
+<br>
+DATA: <a href=https://www.aeon.info/company/group/>グループ事業・企業紹介 | 企業情報 | イオン株式会社</a><br>
+App: <a href=https://github.com/code4fukui/aeon/>Code for FUKUI</a><br>
+
+</body>
+</html>
+
