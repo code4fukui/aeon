@@ -1,6 +1,8 @@
 # aeon
 
-One or two sentence description.
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
+The aeon project is a web application that retrieves and displays information about the Aeon group of companies from the Aeon website.
 
 ## Demo
 https://code4fukui.github.io/aeon/aeon-company.html
