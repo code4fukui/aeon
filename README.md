@@ -19,4 +19,4 @@ https://code4fukui.github.io/aeon/aeon-company.html
 The project fetches data from the Aeon company website at https://www.aeon.info/company/group/.
 
 ## License
-Not specified.
+MIT License — see [LICENSE](LICENSE).
